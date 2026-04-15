@@ -14,10 +14,6 @@ npm run seed     # creates data/order.db
 npm run dev      # app runs on http://localhost:3000
 ```
 
-Then follow the tasks in TASKS.md.
-
----
-
 ## Intended Architecture
 
 The checkout flow is designed around a layered architecture:
