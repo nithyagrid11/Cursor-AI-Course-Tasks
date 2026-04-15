@@ -1,0 +1,16 @@
+.next/
+node_modules/
+.env.local
+
+# Commit the data/ directory but not the db file itself.
+# The db is created by the seed script after install.
+data/*.db
+
+# Next.js auto-generated
+next-env.d.ts
+
+# Claude Code session artifacts (created by lab tasks)
+.claude/
+CLAUDE.md
+package-lock.json
+TASKS.md
