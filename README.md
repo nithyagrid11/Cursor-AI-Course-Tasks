@@ -37,6 +37,7 @@ Keeping business logic in the service layer means route handlers stay thin and e
 - **better-sqlite3** — local SQLite database
 - **zod** — runtime validation
 - **Jest** — test runner (`npm run test:ci`)
+- **TypeScript** — type-check with `npm run compile`
 
 ---
 
@@ -45,4 +46,5 @@ Keeping business logic in the service layer means route handlers stay thin and e
 - Never edit `src/lib/payments.ts` directly — payments logic is frozen
 - Always use TypeScript interfaces, not `type` aliases
 - Test command: `npm run test:ci`
+- Type-check command: `npm run compile`
 - All API routes must return proper HTTP status codes
