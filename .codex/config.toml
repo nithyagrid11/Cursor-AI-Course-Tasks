@@ -1,0 +1,3 @@
+[mcp_servers.sqlite]
+command = "npx"
+args = ["-y", "mcp-sqlite", "data/orders.db"]

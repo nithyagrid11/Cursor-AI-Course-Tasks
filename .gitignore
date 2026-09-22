@@ -14,3 +14,9 @@ next-env.d.ts
 CLAUDE.md
 package-lock.json
 TASKS.md
+
+# SQLite runtime files
+data/*.db-*
+
+# TypeScript build cache
+*.tsbuildinfo

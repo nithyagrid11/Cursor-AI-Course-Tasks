@@ -9,6 +9,15 @@ const DB_PATH = path.resolve(
 
 let _db: Database.Database | null = null;
 
+export interface OrderRow {
+  id: string;
+  itemsJson: string;
+  subtotal: number;
+  discount: number;
+  total: number;
+  createdAt: string;
+}
+
 function getDb(): Database.Database {
   if (_db) return _db;
 
@@ -55,4 +64,22 @@ export function getOrder(id: string): Record<string, unknown> | undefined {
   return db
     .prepare("SELECT * FROM orders WHERE id = ?")
     .get(id) as Record<string, unknown> | undefined;
+}
+
+export function getRecentOrders(limit: number): OrderRow[] {
+  const db = getDb();
+  return db
+    .prepare(`
+      SELECT
+        id,
+        items_json AS itemsJson,
+        subtotal,
+        discount,
+        total,
+        created_at AS createdAt
+      FROM orders
+      ORDER BY created_at DESC
+      LIMIT ?
+    `)
+    .all(limit) as OrderRow[];
 }

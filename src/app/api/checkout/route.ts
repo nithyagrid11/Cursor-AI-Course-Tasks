@@ -54,7 +54,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     });
 
     if (!payment.success) {
-      return NextResponse.json({ ok: false, error: "Payment failed" });
+      return NextResponse.json(
+        { ok: false, error: "Payment failed" },
+        { status: 402 }
+      );
     }
 
     saveOrder({
@@ -72,6 +75,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     );
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unexpected error";
-    return NextResponse.json({ ok: false, error: message });
+    return NextResponse.json(
+      { ok: false, error: message },
+      { status: 500 }
+    );
   }
 }

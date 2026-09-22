@@ -6,13 +6,18 @@ export function validateCartItems(items: unknown[]): CartItem[] {
   }
 
   return items.map((item, i) => {
+    const candidate = item as Record<string, unknown>;
     if (
       typeof item !== "object" ||
       item === null ||
-      typeof (item as Record<string, unknown>).productId !== "string" ||
-      typeof (item as Record<string, unknown>).name !== "string" ||
-      typeof (item as Record<string, unknown>).price !== "number" ||
-      typeof (item as Record<string, unknown>).quantity !== "number"
+      typeof candidate.productId !== "string" ||
+      typeof candidate.name !== "string" ||
+      typeof candidate.price !== "number" ||
+      !Number.isFinite(candidate.price) ||
+      candidate.price < 0 ||
+      typeof candidate.quantity !== "number" ||
+      !Number.isInteger(candidate.quantity) ||
+      candidate.quantity <= 0
     ) {
       throw new Error(`Invalid cart item at index ${i}`);
     }

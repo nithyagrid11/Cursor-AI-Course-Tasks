@@ -25,3 +25,9 @@ export interface CheckoutResult {
   total?: number;
   error?: string;
 }
+
+export interface OrdersResponse {
+  ok: boolean;
+  orders?: Order[];
+  error?: string;
+}

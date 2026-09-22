@@ -28,14 +28,11 @@ export function applyDiscountCodes(
   subtotal: number,
   codes: string[]
 ): { discountAmount: number; total: number } {
-  let total = subtotal;
-
-  for (const code of codes) {
-    const rate = resolveDiscountRate(code);
-    total = applyDiscount(total, rate);
-  }
-
-  const discountAmount = subtotal - total;
+  const discountAmount = codes.reduce(
+    (discount, code) => discount + subtotal * resolveDiscountRate(code),
+    0
+  );
+  const total = subtotal - discountAmount;
   return { discountAmount, total };
 }
 
